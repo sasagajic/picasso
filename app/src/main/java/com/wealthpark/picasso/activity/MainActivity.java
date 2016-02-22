@@ -42,6 +42,7 @@ import com.wealthpark.picasso.events.BrushColorChangedEvent;
 import com.wealthpark.picasso.events.BrushSizeChangedEvent;
 import com.wealthpark.picasso.events.UndoAvailabilityChangeEvent;
 import com.wealthpark.picasso.settings.PicassoSettings.DrawingMode;
+import com.wealthpark.picasso.settings.SettingsActivity;
 
 import butterknife.Bind;
 import butterknife.BindDimen;
@@ -239,6 +240,10 @@ public class MainActivity extends PicassoActivity {
 
             case R.id.action_share:
                 shareYourMasterpiece();
+                return true;
+
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
 
             default:

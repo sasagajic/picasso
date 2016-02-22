@@ -3,6 +3,10 @@ package com.wealthpark.picasso.analytics;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -13,6 +17,8 @@ import com.wealthpark.picasso.R;
  * Created by sasa on 2/21/16.
  */
 public class PicassoAnalytics {
+    public static final String TAG = "PicassoAnalytics";
+
     public static final String CATEGORY_ACTION = "action";
 
     public static final String ACTION_SHARE = "share";
@@ -23,11 +29,32 @@ public class PicassoAnalytics {
     public static final String ACTION_DRAW_PATH = "draw_path";
     public static final String ACTION_UNDO = "undo";
 
-    private Tracker mTracker;
+    public static final String GA_OPT_IN = "GA_OPT_IN";
 
-    public PicassoAnalytics(Context context) {
+    private Tracker mTracker;
+    private OnSharedPreferenceChangeListener mPrefChangeListener;
+
+    public PicassoAnalytics(final Context context) {
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(context);
         mTracker = analytics.newTracker(R.xml.global_tracker);
+
+        PreferenceManager.setDefaultValues(context, R.xml.pref_general, false);
+
+        final SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean optOut = !mSharedPrefs.getBoolean(GA_OPT_IN, false);
+        GoogleAnalytics.getInstance(context).setAppOptOut(optOut);
+        Log.d(TAG, String.format("GoogleAnalytics setAppOptOut(%s)", optOut));
+
+        mPrefChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                if (key.equals(GA_OPT_IN)) {
+                    boolean optOut = !mSharedPrefs.getBoolean(key, false);
+                    GoogleAnalytics.getInstance(context).setAppOptOut(optOut);
+                    Log.d(TAG, String.format("GoogleAnalytics setAppOptOut(%s)",optOut));
+                }
+            }
+        };
+        mSharedPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
     }
 
     public void send(Map<String, String> event) {

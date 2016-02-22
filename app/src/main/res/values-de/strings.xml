@@ -10,4 +10,7 @@
     <string name="ok">Ok</string>
     <string name="select_color">Wählen Sie die Farbe</string>
     <string name="yes">ja</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="pref_title_social_recommendations">Google Analytics-Tracking</string>
+    <string name="pref_description_social_recommendations">Ja, das ist wahr. Wir verfolgen jede Aktion, die Sie in der App machen. Opt-out hier, ob das macht dir Angst.</string>
 </resources>

@@ -10,4 +10,7 @@
     <string name="select_color">Seleccionar el color</string>
     <string name="delete_drawing">eliminar dibujo</string>
     <string name="confirm_delete">¿Está seguro de que quiere eliminar este dibujo?</string>
+    <string name="title_activity_settings">ajustes</string>
+    <string name="pref_title_social_recommendations">Seguimiento de Google Analytics</string>
+    <string name="pref_description_social_recommendations">Si es verdad. Estamos rastreando cada acción que realice en la aplicación. Darse de baja aquí, si eso te asusta.</string>
 </resources>
