@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Picasso</string>
+    <string name="action_color">カラー</string>
+    <string name="action_delete">消す</string>
+    <string name="action_share">シェア</string>
+    <string name="confirm_delete">あなたはこの図面を削除してもよろしいですか？</string>
+    <string name="delete_drawing"> 図面の削除</string>
+    <string name="no">ノー</string>
+    <string name="yes">はい</string>
+    <string name="select_color">色を選択</string>
+    <string name="ok">竣工</string>
+</resources>

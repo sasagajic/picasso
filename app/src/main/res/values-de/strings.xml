@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Picasso</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_color">Farbe</string>
+    <string name="action_share">Aktie</string>
+    <string name="confirm_delete">Sind Sie sicher, dass Sie diese Zeichnung zu löschen?</string>
+    <string name="delete_drawing">löschen Zeichnung</string>
+    <string name="no">Nein</string>
+    <string name="ok">Ok</string>
+    <string name="select_color">Wählen Sie die Farbe</string>
+    <string name="yes">ja</string>
+</resources>

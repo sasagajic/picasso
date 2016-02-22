@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Picasso</string>
+    <string name="action_color">Color</string>
+    <string name="action_delete">Borrar</string>
+    <string name="action_share">Compartir</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="ok">De acuerdo</string>
+    <string name="select_color">Seleccionar el color</string>
+    <string name="delete_drawing">eliminar dibujo</string>
+    <string name="confirm_delete">¿Está seguro de que quiere eliminar este dibujo?</string>
+</resources>
