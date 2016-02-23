@@ -10,7 +10,12 @@ public class PersistenceManager {
         mPersistenceProvider = provider;
     }
 
+    public boolean isFirstStart() {
+        return mPersistenceProvider.isFirstStart();
+    }
 
-
+    public void setFirstStart(boolean firstStart) {
+        mPersistenceProvider.setFirstStart(firstStart);
+    }
 
 }

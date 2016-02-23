@@ -12,4 +12,14 @@ public class SQLitePrefsProviderImpl implements PersistenceProvider {
     public SQLitePrefsProviderImpl(Context context) {
 
     }
+
+    @Override
+    public boolean isFirstStart() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public void setFirstStart(boolean firstStart) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
 }

@@ -20,5 +20,6 @@
         app. Opt-out here if that scares you.
     </string>
     <string name="why_sharing_permission">Sharing wont work without that permission!</string>
+    <string name="welcome">Welcome and have fun!</string>
 
 </resources>

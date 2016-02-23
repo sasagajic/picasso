@@ -26,6 +26,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,6 @@ import butterknife.OnClick;
 public class MainActivity extends PicassoActivity {
     private static final String TAG = "MainActivity";
     private static final String TMP_FILE_NAME = "picasso_tmp";
-//    private static final String PICASSO_ALBUM_NAME = "Picasso";
     private static final int REQ_CODE_SEND = 101;
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 201;
 
@@ -110,7 +110,9 @@ public class MainActivity extends PicassoActivity {
         super.onStart();
         getOttoBus().register(this);
         getOttoBus().register(mPicassoCanvas);
-
+        if(getPersistenceManager().isFirstStart()) {
+            Log.d(TAG, "FIRST_START");
+        }
     }
 
     @Override

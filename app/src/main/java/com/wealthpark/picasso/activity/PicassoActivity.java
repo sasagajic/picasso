@@ -8,9 +8,12 @@ import com.squareup.otto.Bus;
 import com.wealthpark.picasso.PicassoApplication;
 import com.wealthpark.picasso.analytics.PicassoAnalytics;
 import com.wealthpark.picasso.dagger.ApplicationComponent;
+import com.wealthpark.picasso.dagger.module.PersistenceModule;
+import com.wealthpark.picasso.persistence.PersistenceManager;
 import com.wealthpark.picasso.settings.PicassoSettings;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -21,6 +24,7 @@ public abstract class PicassoActivity extends AppCompatActivity {
     @Inject PicassoAnalytics mPicassoAnalytics;
     @Inject Bus mOttoBus;
     @Inject PicassoSettings mPicassoSettings;
+    @Inject @Named(PersistenceModule.SHARED_PREFS_PERSISTENCE_MANAGER) PersistenceManager mPersistenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +56,9 @@ public abstract class PicassoActivity extends AppCompatActivity {
 
     public PicassoSettings getPicassoSettings() {
         return mPicassoSettings;
+    }
+
+    public PersistenceManager getPersistenceManager() {
+        return mPersistenceManager;
     }
 }

@@ -14,4 +14,5 @@
     <string name="pref_title_social_recommendations">Google Analytics-Tracking</string>
     <string name="pref_description_social_recommendations">Ja, das ist wahr. Wir verfolgen jede Aktion, die Sie in der App machen. Opt-out hier, ob das macht dir Angst.</string>
     <string name="why_sharing_permission">Freigabe wird ohne Erlaubnis nicht funktionieren!</string>
+    <string name="welcome">Willkommen und viel Spaß!</string>
 </resources>

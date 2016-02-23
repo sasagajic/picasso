@@ -1,7 +1,6 @@
 package com.wealthpark.picasso.dagger.module;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.wealthpark.picasso.persistence.PersistenceManager;
 import com.wealthpark.picasso.persistence.impl.SQLitePrefsProviderImpl;
@@ -18,19 +17,12 @@ import dagger.Provides;
  */
 @Module
 public class PersistenceModule {
-    private static final String GLOBAL_SHARED_PREFS = "GlobalSharedPrefs";
-    private static final String SHARED_PREFS_PERSISTENCE_MANAGER = "SharedPrefsPersistenceManager";
-    private static final String SQLITE_PERSISTENCE_MANAGER = "SQLitePersistenceManager";
-    private static final String SHARED_PREF_NAME = "picasso";
-
-    @Provides @Singleton @Named(GLOBAL_SHARED_PREFS)
-    SharedPreferences provideSharedPreferences(@Named(ApplicationModule.APPLICATION_CONTEXT) Context context) {
-        return context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-    }
+    public static final String SHARED_PREFS_PERSISTENCE_MANAGER = "SharedPrefsPersistenceManager";
+    public static final String SQLITE_PERSISTENCE_MANAGER = "SQLitePersistenceManager";
 
     @Provides @Singleton @Named(SHARED_PREFS_PERSISTENCE_MANAGER)
-    PersistenceManager provideSharedPrefsPersistenceManager(@Named(GLOBAL_SHARED_PREFS) SharedPreferences prefs) {
-        return new PersistenceManager(new SharedPrefsProviderImpl(prefs));
+    PersistenceManager provideSharedPrefsPersistenceManager(@Named(ApplicationModule.APPLICATION_CONTEXT) Context context) {
+        return new PersistenceManager(new SharedPrefsProviderImpl(context));
     }
 
     /**
