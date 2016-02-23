@@ -11,8 +11,8 @@
     <string name="ok">D\'accord</string>
     <string name="select_color">Choisissez la couleur</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="pref_title_social_recommendations">Google Analytics Tracking</string>
-    <string name="pref_description_social_recommendations">Oui c\'est vrai. Nous suivons chaque action que vous faites dans l\'application. Opt-out ici si cela vous fait peur.</string>
+    <string name="pref_title_google_analytics">Google Analytics Tracking</string>
+    <string name="pref_description_google_analytics">Oui c\'est vrai. Nous suivons chaque action que vous faites dans l\'application. Opt-out ici si cela vous fait peur.</string>
     <string name="why_sharing_permission">Partage ne fonctionnera pas sans la permission!</string>
     <string name="welcome">Bienvenue et amusez-vous!</string>
 </resources>

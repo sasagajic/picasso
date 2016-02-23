@@ -11,8 +11,8 @@
     <string name="delete_drawing">eliminar dibujo</string>
     <string name="confirm_delete">¿Está seguro de que quiere eliminar este dibujo?</string>
     <string name="title_activity_settings">ajustes</string>
-    <string name="pref_title_social_recommendations">Seguimiento de Google Analytics</string>
-    <string name="pref_description_social_recommendations">Si es verdad. Estamos rastreando cada acción que realice en la aplicación. Darse de baja aquí, si eso te asusta.</string>
+    <string name="pref_title_google_analytics">Seguimiento de Google Analytics</string>
+    <string name="pref_description_google_analytics">Si es verdad. Estamos rastreando cada acción que realice en la aplicación. Darse de baja aquí, si eso te asusta.</string>
     <string name="why_sharing_permission">Compartir no funcionará sin el permiso!</string>
     <string name="welcome">Bienvenido y divertirse!</string>
 </resources>

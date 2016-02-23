@@ -3,8 +3,8 @@
     <SwitchPreference
         android:defaultValue="true"
         android:key="GA_OPT_IN"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations"/>
+        android:summary="@string/pref_description_google_analytics"
+        android:title="@string/pref_title_google_analytics"/>
 
 
 </PreferenceScreen>
