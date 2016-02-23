@@ -15,8 +15,8 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
-    <string name="pref_title_social_recommendations">Google Analytics Tracking</string>
-    <string name="pref_description_social_recommendations">Yes, it is true. We are tracking every action you make in the
+    <string name="pref_title_google_analytics">Google Analytics Tracking</string>
+    <string name="pref_description_google_analytics">Yes, it is true. We are tracking every action you make in the
         app. Opt-out here if that scares you.
     </string>
     <string name="why_sharing_permission">Sharing wont work without that permission!</string>
