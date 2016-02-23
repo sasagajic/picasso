@@ -6,11 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -18,6 +20,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -53,6 +58,9 @@ import butterknife.OnClick;
 public class MainActivity extends PicassoActivity {
     private static final String TAG = "MainActivity";
     private static final String TMP_FILE_NAME = "picasso_tmp";
+//    private static final String PICASSO_ALBUM_NAME = "Picasso";
+    private static final int REQ_CODE_SEND = 101;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 201;
 
     // ButterKnife bindings
     @Bind(R.id.mode_selection_fab) FloatingActionButton mModeSelectionButton;
@@ -287,7 +295,27 @@ public class MainActivity extends PicassoActivity {
      * to have access to the image.
      */
     private void shareYourMasterpiece() {
-        File file = new File(getCacheDir(), TMP_FILE_NAME + ".png");
+        // Checking for WRITE_EXTERNAL_STORAGE permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager
+            .PERMISSION_GRANTED) {
+            requestWriteExternalStoragePermission();
+        } else {
+            issueSendIntent();
+        }
+    }
+
+    private void requestWriteExternalStoragePermission() {
+        ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
+            REQUEST_WRITE_EXTERNAL_STORAGE);
+    }
+
+    private void issueSendIntent() {
+        File tmpDir = getExternalCacheDir();
+        if (tmpDir == null) {
+            tmpDir = getCacheDir();
+        }
+
+        File file = new File(tmpDir, TMP_FILE_NAME + ".png");
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);
@@ -299,17 +327,42 @@ public class MainActivity extends PicassoActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
             intent.setType("image/png");
-            startActivity(intent);
+            startActivityForResult(intent, REQ_CODE_SEND);
 
-            getPicassoAnalytics().sendAction(PicassoAnalytics.ACTION_SHARE);
         } catch (FileNotFoundException e) {
             Crashlytics.logException(e);
         } catch (IOException e) {
             Crashlytics.logException(e);
         }
-
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted
+                    issueSendIntent();
+
+                } else {
+                    // permission denied
+                    Snackbar.make(mFloatingToolbar, getString(R.string.why_sharing_permission), Snackbar.LENGTH_LONG).setAction
+                        (getString(R.string.ok), null).show();
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQ_CODE_SEND) {
+            if (resultCode == RESULT_OK) {
+                getPicassoAnalytics().sendAction(PicassoAnalytics.ACTION_SHARE);
+            }
+        }
+    }
 
     /********************************************************************************************
      *           OnClick handlers

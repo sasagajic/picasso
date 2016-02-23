@@ -28,6 +28,7 @@ public class PicassoAnalytics {
     public static final String ACTION_RESIZE_BRUSH = "resize_brush";
     public static final String ACTION_DRAW_PATH = "draw_path";
     public static final String ACTION_UNDO = "undo";
+    public static final String ACTION_REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION= "request_ext_storage_permission";
 
     public static final String GA_OPT_IN = "GA_OPT_IN";
 

@@ -13,4 +13,5 @@
     <string name="title_activity_settings">設定</string>
     <string name="pref_title_social_recommendations">Google Analyticsのトラッキング</string>
     <string name="pref_description_social_recommendations">はい、そうです。私たちは、あなたがアプリで行うすべてのアクションを追跡しています。オプトアウトここにそれがあなたをおびえさせる場合。</string>
+    <string name="why_sharing_permission">共有が許可なしに動作しません！</string>
 </resources>
