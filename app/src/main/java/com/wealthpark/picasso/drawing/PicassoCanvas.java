@@ -122,6 +122,10 @@ public class PicassoCanvas implements PicassoCanvasView.InteractionListener {
     }
 
     public Bitmap asBitmap() {
+        mBufferBitmap.eraseColor(mSettings.getCanvasColor());
+        for (PicassoPath path: mPaths) {
+            path.drawOn(mBufferCanvas);
+        }
         return mBufferBitmap;
     }
 
